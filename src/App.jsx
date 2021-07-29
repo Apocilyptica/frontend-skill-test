@@ -19,9 +19,10 @@ import MainLayout from "./Layouts/MainLayout";
 
 // pages
 import HomePage from "./Pages/HomePage";
-import Registration from "./Pages/Registration";
-import Login from "./Pages/Login";
-import Recovery from "./Pages/Recovery";
+import RegistrationPage from "./Pages/RegistrationPage";
+import LoginPage from "./Pages/LoginPage";
+import RecoveryPage from "./Pages/RecoveryPage";
+import RecipePage from "./Pages/RecipePage";
 
 // Material-ui
 import Paper from "@material-ui/core/Paper";
@@ -50,7 +51,7 @@ const mapState = ({ style, recipes }) => ({
   localHost: recipes.defaultLocalHost,
 });
 
-const App = (props) => {
+const App = React.memo((props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { darkMode, recipes, localHost } = useSelector(mapState);
@@ -69,6 +70,9 @@ const App = (props) => {
         main: "#43a047",
         dark: "#00701a",
       },
+      text: {
+        primary: darkMode ? "#ff5722" : "rgba(0, 0, 0, 0.87)",
+      },
       type: darkMode ? "dark" : "light",
     },
     typography: {
@@ -77,6 +81,9 @@ const App = (props) => {
       fontWeightRegular: 400,
       fontWeightMedium: 500,
       fontWeightBold: 700,
+      h4: {
+        fontWeight: 500,
+      },
     },
   });
 
@@ -107,33 +114,48 @@ const App = (props) => {
           <Route
             exact
             path="/"
-            render={() => (
-              <MainLayout>
-                <HomePage api={`${api}${localHost}`} />
+            render={(props) => (
+              <MainLayout {...props}>
+                <HomePage
+                  api={`${api}${localHost}`}
+                  title="Recipe World"
+                  description="A recipe book for your pocket.  Where you can find, share, and post amazing cooking ideas."
+                />
               </MainLayout>
             )}
           />
           <Route
             path="/registration"
-            render={() => (
-              <MainLayout>
-                <Registration />
+            render={(props) => (
+              <MainLayout {...props}>
+                <RegistrationPage title="Register" description="Register now and join the community to share your love for food." />
               </MainLayout>
             )}
           />
           <Route
             path="/login"
-            render={() => (
-              <MainLayout>
-                <Login />
+            render={(props) => (
+              <MainLayout {...props}>
+                <LoginPage title="Login" description="Login using your Email and Password, or a Google account" />
               </MainLayout>
             )}
           />
           <Route
             path="/recovery"
-            render={() => (
-              <MainLayout>
-                <Recovery />
+            render={(props) => (
+              <MainLayout {...props}>
+                <RecoveryPage
+                  title="Password Recovery"
+                  description="Lost password?  No worries, enter a registered email and we will send a link for you to reset your password."
+                />
+              </MainLayout>
+            )}
+          />
+          <Route
+            path="/recipes/:recipe/:uuid"
+            render={(props) => (
+              <MainLayout {...props}>
+                <RecipePage title="Recipe Name" description="Description." api={`${api}${localHost}`} {...props} />
               </MainLayout>
             )}
           />
@@ -144,6 +166,6 @@ const App = (props) => {
       <Snackbar {...snackbarSettings} />
     </ThemeProvider>
   );
-};
+});
 
 export default App;

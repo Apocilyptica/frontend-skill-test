@@ -19,7 +19,6 @@ import Logo from "../../assets/Logo.png";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
-import Paper from "@material-ui/core/Paper";
 import Toolbar from "@material-ui/core/Toolbar";
 import withWidth from "@material-ui/core/withWidth";
 import InputBase from "@material-ui/core/InputBase";
@@ -30,7 +29,7 @@ import SearchIcon from "@material-ui/icons/Search";
 // Material-ui Styles
 import { makeStyles, alpha } from "@material-ui/core/styles";
 
-const mapState = ({ user, style }) => ({ user: user.currentUser, darkMode: style.darkMode });
+const mapState = ({ style }) => ({ darkMode: style.darkMode });
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -90,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const BottomNav = () => {
-  const { user, darkMode } = useSelector(mapState);
+  const { darkMode } = useSelector(mapState);
   const classes = useStyles();
 
   return (

@@ -8,6 +8,7 @@ import BasicRecipeCard from "../BasicRecipeCard";
 
 // Material-ui
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 // Material-ui Styles
 import { makeStyles } from "@material-ui/core/styles";
@@ -28,33 +29,26 @@ const Home = ({ api }) => {
   const classes = useStyles();
   const { recipes, specials } = useSelector(mapState);
   const [image, setImage] = useState(recipes.map((item) => item.images.full));
-  const [imgApi, setimgApi] = useState(null);
 
   useEffect(() => {
     const fullImages = recipes.map((item) => item.images.full)[0];
     setImage(fullImages);
-    setimgApi(`${api}${fullImages}`);
-  }, [image]);
+  }, [image, recipes]);
 
   return (
-    <Grid container item xs={12} className={classes.root} spacing={3} alignContent="space-around">
-      <Grid container item spacing={3} xs={8} direction="column">
+    <Grid container item xs={12} className={classes.root} justifyContent="center">
+      <Grid container item xs={2}>
+        stuff
+      </Grid>
+      <Grid container item spacing={3} xs={6} direction="column">
+        <Typography variant="h3" color="textSecondary">
+          Recently Added
+        </Typography>
         {recipes &&
           recipes.map((recipe) => (
             <BasicRecipeCard
               key={recipe.uuid}
-              title={recipe.title}
-              description={recipe.description}
-              imageUrl={`${api}${recipe.images.medium}`}
-              servings={recipe.servings}
-              prepTime={recipe.prepTime}
-              cookTime={recipe.cookTime}
-            />
-          ))}
-        {recipes &&
-          recipes.map((recipe) => (
-            <BasicRecipeCard
-              key={recipe.uuid}
+              uuid={recipe.uuid}
               title={recipe.title}
               description={recipe.description}
               imageUrl={`${api}${recipe.images.medium}`}

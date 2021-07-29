@@ -15,7 +15,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   offSet: {
-    height: theme.spacing(18),
+    height: theme.spacing(15),
   },
 }));
 

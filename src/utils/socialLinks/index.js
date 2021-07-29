@@ -1,11 +1,11 @@
 // Material-ui Icons
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import InstagramIcon from "@material-ui/icons/Instagram";
 
 // Font Awesome Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 export const socialLinksData = [
   {
@@ -27,12 +27,16 @@ export const socialLinksData = [
     backgroundColor: { backgroundColor: "#00acee" },
   },
   {
-    name: "linkedin",
-    label: "linkedin link",
-    iconUI: <LinkedInIcon />,
-    iconFa: <FontAwesomeIcon icon={faLinkedin} />,
-    URL: "https://www.linkedin.com/company/grbusinessbreakfast/",
-    color: { color: "#0e76a8" },
-    backgroundColor: { backgroundColor: "#0e76a8" },
+    name: "instagram",
+    label: "Instagram URL",
+    labelWidth: 115,
+    iconUI: <InstagramIcon id="instagram" />,
+    iconFa: <FontAwesomeIcon icon={faInstagram} id="instagram" />,
+    color: {
+      color: "#fff",
+    },
+    backgroundColor: {
+      backgroundColor: "#fff",
+    },
   },
 ];
