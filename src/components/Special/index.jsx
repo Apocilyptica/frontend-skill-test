@@ -48,7 +48,7 @@ const Special = ({ details }) => {
       <Typography variant="subtitle2" component="p" color={darkMode ? "textSecondary" : "textPrimary"}>
         {details.text}
       </Typography>
-      {details.hasOwnProperty("geo") && <Map geoLocation={details.geo} />}
+      {details.hasOwnProperty("geo") && <Map geoLocation={details.geo} title={details.title} />}
     </div>
   );
 };

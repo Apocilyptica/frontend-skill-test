@@ -6,12 +6,14 @@ import userReducer from "./User/user.reducers";
 import styleReducer from "./Styles/styles.reducers";
 import recipesReducer from "./Recipes/recipes.reducers";
 import pageDetailsReducer from "./PageDetails/pageDetails.reducers";
+import locationsReducer from "./Locations/locations.reducers";
 
 export const rootReducer = combineReducers({
   user: userReducer,
   style: styleReducer,
   recipes: recipesReducer,
   currentPage: pageDetailsReducer,
+  location: locationsReducer,
 });
 
 const configStorage = {
