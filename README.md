@@ -5,6 +5,11 @@
 For this javascript project we've provided a recipe API with two endpoints. With this API you'll need to complete the following objectives.
 
 - Pull the data from the API
+
+1. get data from Crescendo API and store it in local data store
+2. write all data from local API to firebase then preform a check to see if any data from local data via. uuid has changed if so add/make changes as default data but keep all other data intact {commments: [] ratings: []}
+3. if changes have been made update the prop editDate
+
 - Create a list view which includes all the recipes
 - Create a recipe detail view to display each recipe
 - Ingredients with a matching `ingredientId` listed in the specials response should also show the special `title`, `type` and `text` under the ingredient name
