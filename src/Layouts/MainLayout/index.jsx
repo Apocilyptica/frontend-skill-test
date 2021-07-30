@@ -12,7 +12,9 @@ const MainLayout = React.memo((props) => {
     <>
       <Header {...props} />
       <PageInfoCard {...props} />
-      <Paper square>{props.children}</Paper>
+      <Paper square elevation={0}>
+        {props.children}
+      </Paper>
       {/* <Footer /> */}
     </>
   );

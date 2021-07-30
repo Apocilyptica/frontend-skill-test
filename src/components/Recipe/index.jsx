@@ -27,6 +27,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    width: "100%",
   },
   image: {
     width: "75%",
@@ -140,37 +141,37 @@ const Recipe = ({ recipe, api }) => {
   };
 
   return (
-    <Grid container className={classes.root} spacing={6} direction="column" justifyContent="center" align="center">
-      <Grid container xs={12} item justifyContent="center">
-        <Grid item xs={12} sm={10} md={6}>
-          <Paper
-            className={classes.image}
-            style={{
-              backgroundImage: `url(${api}${recipe.images.full})`,
-              backgroundPostition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-            }}
-          />
-          <Typography>{`Recipe Created: ${recipe.postDate}--Last Updated: ${recipe.editDate}`}</Typography>
-        </Grid>
-        <Grid item xs={12} sm={10} md={6}>
-          <Paper className={classes.paper}>
-            <Typography className={classes.title} variant="h4" component="h4" color="secondary">
-              Ingredients
-            </Typography>
-            <List dense>{ingredients()}</List>
-          </Paper>
-        </Grid>
-      </Grid>
-      <Grid container item justifyContent="center">
-        <Grid item xs={12} sm={10} md={6}>
-          <Paper className={classes.paper}>
-            <Typography className={classes.title} variant="h4" component="h4" color="secondary">
-              Instructions
-            </Typography>
-            <List>{directions()}</List>
-          </Paper>
+    <Grid container className={classes.root} spacing={3}>
+      <Grid item xs={12}>
+        <Grid container justifyContent="center" spacing={5} align="center">
+          <Grid item xs={12} md={8} lg={6}>
+            <Paper
+              className={classes.image}
+              style={{
+                backgroundImage: `url(${api}${recipe.images.full})`,
+                backgroundPostition: "center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+              }}
+            />
+            <Typography>{`Recipe Created: ${recipe.postDate}--Last Updated: ${recipe.editDate}`}</Typography>
+          </Grid>
+          <Grid item xs={12} md={8} lg={6}>
+            <Paper className={classes.paper}>
+              <Typography className={classes.title} variant="h4" component="h4" color="secondary">
+                Ingredients
+              </Typography>
+              <List dense>{ingredients()}</List>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={8} lg={6}>
+            <Paper className={classes.paper}>
+              <Typography className={classes.title} variant="h4" component="h4" color="secondary">
+                Instructions
+              </Typography>
+              <List>{directions()}</List>
+            </Paper>
+          </Grid>
         </Grid>
       </Grid>
       <Modal open={open} onClose={handleModalClose} aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description">

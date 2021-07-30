@@ -22,12 +22,20 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     height: "300px",
     boxShadow: theme.shadows[5],
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+      height: "500px",
+    },
   },
   rootDarkMode: {
     display: "flex",
     height: "300px",
     boxShadow: theme.shadows[5],
     backgroundColor: theme.palette.grey[700],
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+      height: "500px",
+    },
   },
   details: {
     display: "flex",
@@ -40,6 +48,10 @@ const useStyles = makeStyles((theme) => ({
   },
   cover: {
     width: 500,
+    [theme.breakpoints.down("md")]: {
+      height: "100%",
+      width: "100%",
+    },
   },
   recipeDetails: {
     display: "flex",

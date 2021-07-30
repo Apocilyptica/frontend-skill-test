@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 // Components
 import BasicRecipeCard from "../BasicRecipeCard";
+import EventCard from "../EventCard";
 
 // Material-ui
 import Grid from "@material-ui/core/Grid";
@@ -20,7 +21,7 @@ const mapState = ({ recipes }) => ({
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: 30,
+    flexGrow: 1,
     width: "100%",
   },
 }));
@@ -36,30 +37,49 @@ const Home = ({ api }) => {
   }, [image, recipes]);
 
   return (
-    <Grid container item xs={12} className={classes.root} justifyContent="center">
-      <Grid container item xs={2}>
-        stuff
-      </Grid>
-      <Grid container item spacing={3} xs={6} direction="column">
-        <Typography variant="h3" color="textSecondary">
-          Recently Added
-        </Typography>
-        {recipes &&
-          recipes.map((recipe) => (
-            <BasicRecipeCard
-              key={recipe.uuid}
-              uuid={recipe.uuid}
-              title={recipe.title}
-              description={recipe.description}
-              imageUrl={`${api}${recipe.images.medium}`}
-              servings={recipe.servings}
-              prepTime={recipe.prepTime}
-              cookTime={recipe.cookTime}
-            />
-          ))}
-      </Grid>
-      <Grid container item xs={4}>
-        stuff
+    <Grid container className={classes.root} spacing={5}>
+      <Grid item xs={12}>
+        <Grid container justifyContent="center" alignContent="center" spacing={5}>
+          <Grid item>
+            <Grid container direction="column" justifyContent="center" alignContent="center" spacing={5}>
+              <Grid item>
+                <Typography variant="h3" color="textSecondary">
+                  Recently Added
+                </Typography>
+              </Grid>
+              {recipes &&
+                recipes.map((recipe) => (
+                  <BasicRecipeCard
+                    key={recipe.uuid}
+                    uuid={recipe.uuid}
+                    title={recipe.title}
+                    description={recipe.description}
+                    imageUrl={`${api}${recipe.images.medium}`}
+                    servings={recipe.servings}
+                    prepTime={recipe.prepTime}
+                    cookTime={recipe.cookTime}
+                  />
+                ))}
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid container direction="column" justifyContent="center" alignContent="center" alignItems="center" spacing={5}>
+              <Grid item>
+                <Typography variant="h3" color="textSecondary">
+                  Events Comming Soon
+                </Typography>
+              </Grid>
+              <Grid item>
+                {specials.map((special) => {
+                  if (special.type === "event") {
+                    return <EventCard key={special.uuid} event={special} />;
+                  }
+                  return null;
+                })}
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );

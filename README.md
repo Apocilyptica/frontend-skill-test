@@ -11,7 +11,7 @@ For this javascript project we've provided a recipe API with two endpoints. With
   | done | 2 | create a user login | build this so that a user can leave comments, like a recipe, add a recipe, edit a recipe (user has been created) | 07/23/2021 |
   | done | 3 | since we have a user we need Redux, Sagas, and Persist | created all 3 of these to persist data and write data to state asynchronous thru sagas | 07/23/2021 |
   | development | 4 | draw what you want to see on paper...dyor | UI is ALWAYS!! important | Current Standards |
-  | development | 5 | have webApp be mobile friendly | continue with Material-ui grid standards | when app is doneS |
+  | done | 5 | have webApp be mobile friendly | used Material-ui grid, and makeStyles Hook for breakpoints | 07/30/2021 |
   | done | 6 | come up with a color scheme | had to use multipule resources on color synergy and built the colors in material-ui theme | 07/25/2021 |
   | done | 7 | build a navigation system | created my own... took me 36 hours on and off to refine and create because material-ui's breadcrumbs didnt give me what I wanted | 07/27/2021 |
   | done | 8 | establish auth hooks to provide access to users and admins | created Higher order components(havnt used yet) | N/A |

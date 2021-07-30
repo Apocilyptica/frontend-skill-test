@@ -9,6 +9,7 @@ import { googleMapsConfig } from "../../googlemaps/config";
 
 // Material-ui
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 // Google Maps
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
@@ -91,7 +92,8 @@ const Map = ({ geoLocation, title }) => {
         {selected ? (
           <InfoWindow position={selected} options={{ pixelOffset: new window.google.maps.Size(0, -50) }} onCloseClick={() => setSelected(null)}>
             <div>
-              <h1>{address}</h1>
+              <Typography variant="h5">{title}</Typography>
+              <Typography variant="h6">{address}</Typography>
             </div>
           </InfoWindow>
         ) : null}

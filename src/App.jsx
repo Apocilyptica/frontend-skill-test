@@ -23,6 +23,7 @@ import RegistrationPage from "./Pages/RegistrationPage";
 import LoginPage from "./Pages/LoginPage";
 import RecoveryPage from "./Pages/RecoveryPage";
 import RecipePage from "./Pages/RecipePage";
+import RecipesPage from "./Pages/RecipesPage";
 
 // Material-ui
 import Paper from "@material-ui/core/Paper";
@@ -156,6 +157,14 @@ const App = React.memo((props) => {
             render={(props) => (
               <MainLayout {...props}>
                 <RecipePage title="Recipe Name" description="Description." api={`${api}${localHost}`} {...props} />
+              </MainLayout>
+            )}
+          />
+          <Route
+            path="/recipes"
+            render={(props) => (
+              <MainLayout {...props}>
+                <RecipesPage {...props} api={`${api}${localHost}`} />
               </MainLayout>
             )}
           />
