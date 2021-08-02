@@ -1,25 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Redux
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { updateCurrentRecipe } from "../../redux/PageDetails/pageDetails.actions";
+import { recipeUpdateStart } from "../../redux/Recipes/recipes.actions";
 
 // Components
-import Special from "../Special";
+import IngredientList from "../IngredientList";
+import InstructionsList from "../InstructionsList";
 
 // Material-ui
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
-
-// Material-ui Icons
-import ListAltIcon from "@material-ui/icons/ListAlt";
+import Button from "@material-ui/core/button";
 
 // Material-ui Styles
 import { makeStyles } from "@material-ui/core/styles";
@@ -45,99 +41,41 @@ const useStyles = makeStyles((theme) => ({
   title: {
     textTransform: "uppercase",
   },
-
-  detailsDarkMode: {
-    color: theme.palette.primary.main,
-  },
-  detailButton: {
-    marginLeft: "20px",
-    boxShadow: theme.shadows[5],
+  list: {
+    width: "100%",
   },
 }));
 
-const mapState = ({ recipes, style }) => ({
-  specials: recipes.specials,
-  darkMode: style.darkMode,
-});
-
 const Recipe = ({ recipe, api }) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
-  const { specials, darkMode } = useSelector(mapState);
   const [open, setOpen] = useState(false);
   const [modalBody, setModalBody] = useState(<div></div>);
+  const [ingredientsChanged, setIngredientsChanged] = useState(false);
+  const [recipeState, setRecipeState] = useState({
+    ...recipe,
+  });
+  const [parentEdit, setparentEdit] = useState(false);
+  const [commit, setCommit] = useState(false);
 
-  const handleModalOpen = (special) => {
-    setOpen(true);
-    setModalBody(
-      <div>
-        <Special details={special} />
-      </div>
-    );
-  };
+  useEffect(() => {
+    dispatch(updateCurrentRecipe(recipeState));
+  }, [recipeState]);
 
   const handleModalClose = () => {
     setOpen(false);
   };
 
-  const ingredients = () => {
-    return recipe.ingredients.map((ingredient) => (
-      <ListItem key={ingredient.uuid}>
-        <ListItemAvatar>
-          <Avatar>
-            <ListAltIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText
-          disableTypography
-          primary={
-            <Typography
-              type="body1"
-              color={darkMode ? "textSecondary" : "textPrimary"}
-            >{`${ingredient.amount} ${ingredient.measurement} ${ingredient.name}`}</Typography>
-          }
-          secondary={specials.map((special) => {
-            if (special.ingredientId === ingredient.uuid)
-              return (
-                <Typography key={special.uuid} type="body2" color="primary">
-                  {special.text}
-                  <Button
-                    value={special.uuid}
-                    className={classes.detailButton}
-                    variant="outlined"
-                    color="secondary"
-                    onClick={() => handleModalOpen(special)}
-                  >
-                    {special.title}
-                  </Button>
-                </Typography>
-              );
-            return null;
-          })}
-        />
-      </ListItem>
-    ));
+  const handleUpdate = () => {
+    setparentEdit(true);
+    setCommit(true);
   };
 
-  const directions = () => {
-    return recipe.directions.map((direction, index) => (
-      <ListItem key={index}>
-        <ListItemAvatar>
-          <Avatar>{index + 1}</Avatar>
-        </ListItemAvatar>
-        <ListItemText
-          primary={
-            <Typography type="body1" color={darkMode ? "textSecondary" : "textPrimary"}>
-              {direction.instructions}
-            </Typography>
-          }
-          secondary={
-            <Typography type="body2" color="primary">
-              {direction.optional ? "optional" : null}
-            </Typography>
-          }
-        />
-      </ListItem>
-    ));
+  const handleCommit = () => {
+    dispatch(recipeUpdateStart(recipeState, `${api}/recipes`));
+    setparentEdit(false);
+    setCommit(false);
+    setIngredientsChanged(false);
   };
 
   return (
@@ -158,10 +96,46 @@ const Recipe = ({ recipe, api }) => {
           </Grid>
           <Grid item xs={12} md={8} lg={6}>
             <Paper className={classes.paper}>
+              {ingredientsChanged && (
+                <Grid container justifyContent="space-between">
+                  <Grid item>
+                    <Typography variant="h5" component="h5" color="error">
+                      * Ingredients have changed
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Button variant="outlined" color="primary" onClick={handleUpdate}>
+                      Stage Changes
+                    </Button>
+                    {commit && (
+                      <Button variant="outlined" color="primary" onClick={handleCommit}>
+                        Commit Changes
+                      </Button>
+                    )}
+                  </Grid>
+                </Grid>
+              )}
+
               <Typography className={classes.title} variant="h4" component="h4" color="secondary">
                 Ingredients
               </Typography>
-              <List dense>{ingredients()}</List>
+              <List dense className={classes.list}>
+                {recipe.ingredients.map((ingredient, index) => (
+                  <IngredientList
+                    key={index}
+                    setIngredientsChanged={setIngredientsChanged}
+                    idx={index}
+                    recipe={recipe}
+                    ingredient={ingredient}
+                    setOpen={setOpen}
+                    setModalBody={setModalBody}
+                    setRecipeState={setRecipeState}
+                    parentEdit={parentEdit}
+                    setParentEdit={setparentEdit}
+                    setCommit={setCommit}
+                  />
+                ))}
+              </List>
             </Paper>
           </Grid>
           <Grid item xs={12} md={8} lg={6}>
@@ -169,7 +143,9 @@ const Recipe = ({ recipe, api }) => {
               <Typography className={classes.title} variant="h4" component="h4" color="secondary">
                 Instructions
               </Typography>
-              <List>{directions()}</List>
+              <List className={classes.list}>
+                <InstructionsList recipe={recipe} />
+              </List>
             </Paper>
           </Grid>
         </Grid>

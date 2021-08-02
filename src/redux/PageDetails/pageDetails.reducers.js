@@ -20,6 +20,11 @@ const pageDetailsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         pathArray: action.payload,
       };
+    case pageDetailsTypes.UPDATE_CURRENT_RECIPE:
+      return {
+        ...state,
+        otherProps: action.payload,
+      };
     default:
       return state;
   }

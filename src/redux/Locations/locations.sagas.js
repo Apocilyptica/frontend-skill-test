@@ -10,7 +10,6 @@ export function* locationAddress({ payload }) {
   const URL = payload + googleMapsConfig.apiKey;
   try {
     const data = yield axios.get(URL).then((response) => response.data.results[0].formatted_address);
-    console.log(data);
     yield put(setLocationAddress(data));
   } catch (error) {
     console.log(error);

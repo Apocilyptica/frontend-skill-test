@@ -9,3 +9,8 @@ export const setPathArray = (array) => ({
   type: pageDetailsTypes.SET_CURRENT_PATH_ARRAY,
   payload: array,
 });
+
+export const updateCurrentRecipe = (recipe) => ({
+  type: pageDetailsTypes.UPDATE_CURRENT_RECIPE,
+  payload: recipe,
+});

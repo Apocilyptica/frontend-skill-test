@@ -24,3 +24,8 @@ export const apiLoaded = (status) => ({
   type: recipesTypes.API_LOADED,
   payload: status,
 });
+
+export const recipeUpdateStart = (recipe, apiEndpoint) => ({
+  type: recipesTypes.RECIPE_UPDATE_START,
+  payload: { recipe: recipe, apiEndpoint: apiEndpoint },
+});
