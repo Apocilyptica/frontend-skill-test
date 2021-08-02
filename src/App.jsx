@@ -24,6 +24,7 @@ import LoginPage from "./Pages/LoginPage";
 import RecoveryPage from "./Pages/RecoveryPage";
 import RecipePage from "./Pages/RecipePage";
 import RecipesPage from "./Pages/RecipesPage";
+import NoMatchPage from "./Pages/NoMatchPage";
 
 // Material-ui
 import Paper from "@material-ui/core/Paper";
@@ -164,7 +165,14 @@ const App = React.memo((props) => {
             path="/recipes"
             render={(props) => (
               <MainLayout {...props}>
-                <RecipesPage title="Recipe Name" description="Description." {...props} api={`${api}${localHost}`} />
+                <RecipesPage title="All Recipes" description="Find your recipe today." {...props} api={`${api}${localHost}`} />
+              </MainLayout>
+            )}
+          />
+          <Route
+            render={(props) => (
+              <MainLayout {...props}>
+                <NoMatchPage title="404." description="That's an error" {...props} />
               </MainLayout>
             )}
           />

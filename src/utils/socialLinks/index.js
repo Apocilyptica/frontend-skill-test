@@ -1,11 +1,12 @@
 // Material-ui Icons
 import FacebookIcon from "@material-ui/icons/Facebook";
-import TwitterIcon from "@material-ui/icons/Twitter";
 import InstagramIcon from "@material-ui/icons/Instagram";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import GitHubIcon from "@material-ui/icons/GitHub";
 
 // Font Awesome Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faLinkedin, faInstagram, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 export const socialLinksData = [
   {
@@ -13,25 +14,38 @@ export const socialLinksData = [
     label: "facebook link",
     iconUI: <FacebookIcon />,
     iconFa: <FontAwesomeIcon icon={faFacebook} />,
-    URL: "https://www.facebook.com/grbusinessbreakfast/?ref=br_rs",
+    URL: "https://www.facebook.com/james.jager",
     color: { color: "#3b5998" },
     backgroundColor: { backgroundColor: "#3b5998" },
   },
   {
-    name: "twitter",
-    label: "twitter link",
-    iconUI: <TwitterIcon />,
-    iconFa: <FontAwesomeIcon icon={faTwitter} />,
-    URL: "https://twitter.com/grbusbrkfast",
-    color: { color: "#00acee" },
-    backgroundColor: { backgroundColor: "#00acee" },
+    name: "linkedin",
+    label: "Linkedin URL",
+    iconUI: <LinkedInIcon />,
+    iconFa: <FontAwesomeIcon icon={faLinkedin} />,
+    URL: "https://www.linkedin.com/in/james-jager-a85476162/",
+    color: { color: "#0e76a8" },
+    backgroundColor: { backgroundColor: "#0e76a8" },
+  },
+  {
+    name: "github",
+    label: "GitHub URL",
+    iconUI: <GitHubIcon />,
+    iconFa: <FontAwesomeIcon icon={faGithub} id="instagram" />,
+    URL: "https://github.com/Apocilyptica/frontend-skill-test",
+    color: {
+      color: "#fff",
+    },
+    backgroundColor: {
+      backgroundColor: "#fff",
+    },
   },
   {
     name: "instagram",
     label: "Instagram URL",
-    labelWidth: 115,
     iconUI: <InstagramIcon id="instagram" />,
     iconFa: <FontAwesomeIcon icon={faInstagram} id="instagram" />,
+
     color: {
       color: "#fff",
     },

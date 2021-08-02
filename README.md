@@ -15,7 +15,7 @@ For this javascript project we've provided a recipe API with two endpoints. With
   | done | 6 | come up with a color scheme | had to use multipule resources on color synergy and built the colors in material-ui theme | 07/25/2021 |
   | done | 7 | build a navigation system | created my own... took me 36 hours on and off to refine and create because material-ui's breadcrumbs didnt give me what I wanted | 07/27/2021 |
   | done | 8 | establish auth hooks to provide access to users and admins | created Higher order components(havnt used yet) | N/A |
-  |developement | 8 | create trie for search engine | havnt started | N/A |
+  |developement | 8 | create filter for search engine | havnt started | N/A |
 
 - Pull the data from the API
   | Status | Item | Goal | Notes | Date Complete? |
@@ -56,11 +56,12 @@ For this javascript project we've provided a recipe API with two endpoints. With
 
 - The Ideas wont stop flowing I need to find a spot where I can show just enough complexity to show my talents yet be able to turn in this project without taking months :)
   | Item | Goal | Notes | Complete? |
-  | ------------- |:-------------:| --------- | --------- | ---------: |
-  | Navbar | Make the navigation link for recipes | just need to add the link | NO |
+  | ------------- |:-------------:| --------- | --------- |
+  | Navbar | Make the navigation link for recipes | just need to add the link | YES |
   | Social Link | Have all the social links go to my profiles | add a github link to this project as well | NO |
   | Clean Up | Clean Up all unused variables | In the console log get rid of all the unused variable warnings | NO |
   | Admin User | Create a basic admin user for Crescendo Collective to be able to log in as admin and edit recipes | username: test@test.me password: password | NO |
+  | NoMatch Page | Create a NoMatch 404 Page | component | YES |
 
 This project includes a API server (json-server) for you to use. To install and run, use the commands below:
 

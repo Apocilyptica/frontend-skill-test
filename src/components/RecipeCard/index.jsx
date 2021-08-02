@@ -74,7 +74,7 @@ const RecipeCard = ({ recipe, api }) => {
         title={recipe.title}
         subheader={recipe.postDate}
       />
-      <CardMedia className={classes.media} image={`${api}${recipe.images.small}`} title="Paella dish" />
+      <CardMedia className={classes.media} image={`${api}${recipe.images.small}`} title={recipe.title} />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {recipe.description}
