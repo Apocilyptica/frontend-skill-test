@@ -5,6 +5,7 @@ const recipesTypes = {
   SET_SPECIALS: "SET_SPECIALS",
   API_LOADED: "API_LOADED",
   RECIPE_UPDATE_START: "RECIPE_UPDATE_START",
+  API_CHANGED: "API_CHANGED",
 };
 
 export default recipesTypes;

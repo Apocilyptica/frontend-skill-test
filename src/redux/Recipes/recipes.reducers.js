@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   recipes: [],
   specials: [],
   apiLoaded: false,
+  apiChanged: false,
   defaultLocalHost: "3001",
 };
 
@@ -23,6 +24,11 @@ const recipesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         apiLoaded: action.payload,
+      };
+    case recipesTypes.API_CHANGED:
+      return {
+        ...state,
+        apiChanged: action.payload,
       };
     default:
       return state;

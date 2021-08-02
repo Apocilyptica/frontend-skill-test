@@ -156,7 +156,7 @@ const App = React.memo((props) => {
             path="/recipes/:recipe/:uuid"
             render={(props) => (
               <MainLayout {...props}>
-                <RecipePage title="Recipe Name" description="Description." api={`${api}${localHost}`} {...props} />
+                <RecipePage api={`${api}${localHost}`} {...props} />
               </MainLayout>
             )}
           />
@@ -164,7 +164,7 @@ const App = React.memo((props) => {
             path="/recipes"
             render={(props) => (
               <MainLayout {...props}>
-                <RecipesPage {...props} api={`${api}${localHost}`} />
+                <RecipesPage title="Recipe Name" description="Description." {...props} api={`${api}${localHost}`} />
               </MainLayout>
             )}
           />

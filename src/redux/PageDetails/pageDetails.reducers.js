@@ -3,17 +3,17 @@ import pageDetailsTypes from "./pageDetails.types";
 const INITIAL_STATE = {
   title: "Page Title",
   description: "Description",
-  otherProps: {},
+  recipe: {},
+  recipeSet: false,
 };
 
 const pageDetailsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case pageDetailsTypes.SET_CURRENT_PAGE_DETAILS:
       return {
-        ...state,
         title: action.payload.title,
         description: action.payload.description,
-        otherProps: action.payload,
+        recipeSet: false,
       };
     case pageDetailsTypes.SET_CURRENT_PATH_ARRAY:
       return {
@@ -23,7 +23,13 @@ const pageDetailsReducer = (state = INITIAL_STATE, action) => {
     case pageDetailsTypes.UPDATE_CURRENT_RECIPE:
       return {
         ...state,
-        otherProps: action.payload,
+        recipe: action.payload,
+      };
+    case pageDetailsTypes.SET_CURRENT_RECIPE:
+      return {
+        ...state,
+        recipe: action.payload,
+        recipeSet: true,
       };
     default:
       return state;

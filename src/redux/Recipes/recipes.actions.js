@@ -29,3 +29,8 @@ export const recipeUpdateStart = (recipe, apiEndpoint) => ({
   type: recipesTypes.RECIPE_UPDATE_START,
   payload: { recipe: recipe, apiEndpoint: apiEndpoint },
 });
+
+export const apiChanged = (status) => ({
+  type: recipesTypes.API_CHANGED,
+  payload: status,
+});

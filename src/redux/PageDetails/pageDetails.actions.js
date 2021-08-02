@@ -14,3 +14,8 @@ export const updateCurrentRecipe = (recipe) => ({
   type: pageDetailsTypes.UPDATE_CURRENT_RECIPE,
   payload: recipe,
 });
+
+export const setCurrentRecipe = (recipe) => ({
+  type: pageDetailsTypes.SET_CURRENT_RECIPE,
+  payload: recipe,
+});

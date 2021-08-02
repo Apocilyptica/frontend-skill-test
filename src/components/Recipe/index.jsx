@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 // Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentRecipe } from "../../redux/PageDetails/pageDetails.actions";
-import { recipeUpdateStart } from "../../redux/Recipes/recipes.actions";
+import { recipeUpdateStart, apiChanged } from "../../redux/Recipes/recipes.actions";
 
 // Components
 import IngredientList from "../IngredientList";
 import InstructionsList from "../InstructionsList";
+import Snackbar from "../Snackbar";
 
 // Material-ui
 import Grid from "@material-ui/core/Grid";
@@ -46,36 +47,60 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const mapState = ({ recipes }) => ({
+  apiHasChanged: recipes.apiChanged,
+});
+
 const Recipe = ({ recipe, api }) => {
+  // i have recipe here in log
   const dispatch = useDispatch();
   const classes = useStyles();
+  const { apiHasChanged } = useSelector(mapState);
   const [open, setOpen] = useState(false);
   const [modalBody, setModalBody] = useState(<div></div>);
   const [ingredientsChanged, setIngredientsChanged] = useState(false);
+  const [directionsChanged, setDirectionsChanged] = useState(false);
   const [recipeState, setRecipeState] = useState({
     ...recipe,
   });
-  const [parentEdit, setparentEdit] = useState(false);
-  const [commit, setCommit] = useState(false);
+  const [parentIngredientEdit, setParentIngredientEdit] = useState(false);
+  const [parentDirectionEdit, setParentDirectionEdit] = useState(false);
+  const [commitIngredients, setCommitIngredients] = useState(false);
+  const [commitDirections, setCommitDirections] = useState(false);
+  const [snackbarSettings] = useState({ severity: "success", message: "API Successfully Changed" });
 
   useEffect(() => {
     dispatch(updateCurrentRecipe(recipeState));
-  }, [recipeState]);
+  }, []);
 
   const handleModalClose = () => {
     setOpen(false);
   };
 
-  const handleUpdate = () => {
-    setparentEdit(true);
-    setCommit(true);
+  const handleUpdateIngredients = () => {
+    dispatch(apiChanged(false));
+    setParentIngredientEdit(true);
+    setCommitIngredients(true);
   };
 
-  const handleCommit = () => {
+  const handleUpdateInstructions = () => {
+    dispatch(apiChanged(false));
+    setParentDirectionEdit(true);
+    setCommitDirections(true);
+  };
+
+  const handleCommitIngredients = () => {
     dispatch(recipeUpdateStart(recipeState, `${api}/recipes`));
-    setparentEdit(false);
-    setCommit(false);
+    setParentIngredientEdit(false);
+    setCommitIngredients(false);
     setIngredientsChanged(false);
+  };
+
+  const handleCommitInstructions = () => {
+    dispatch(recipeUpdateStart(recipeState, `${api}/recipes`));
+    setParentDirectionEdit(false);
+    setCommitDirections(false);
+    setDirectionsChanged(false);
   };
 
   return (
@@ -104,11 +129,11 @@ const Recipe = ({ recipe, api }) => {
                     </Typography>
                   </Grid>
                   <Grid item>
-                    <Button variant="outlined" color="primary" onClick={handleUpdate}>
+                    <Button variant="outlined" color="primary" onClick={handleUpdateIngredients}>
                       Stage Changes
                     </Button>
-                    {commit && (
-                      <Button variant="outlined" color="primary" onClick={handleCommit}>
+                    {commitIngredients && (
+                      <Button variant="outlined" color="primary" onClick={handleCommitIngredients}>
                         Commit Changes
                       </Button>
                     )}
@@ -123,16 +148,16 @@ const Recipe = ({ recipe, api }) => {
                 {recipe.ingredients.map((ingredient, index) => (
                   <IngredientList
                     key={index}
-                    setIngredientsChanged={setIngredientsChanged}
+                    setChanged={setIngredientsChanged}
                     idx={index}
                     recipe={recipe}
                     ingredient={ingredient}
                     setOpen={setOpen}
                     setModalBody={setModalBody}
                     setRecipeState={setRecipeState}
-                    parentEdit={parentEdit}
-                    setParentEdit={setparentEdit}
-                    setCommit={setCommit}
+                    parentEdit={parentIngredientEdit}
+                    setParentEdit={setParentIngredientEdit}
+                    setCommit={setCommitIngredients}
                   />
                 ))}
               </List>
@@ -140,11 +165,43 @@ const Recipe = ({ recipe, api }) => {
           </Grid>
           <Grid item xs={12} md={8} lg={6}>
             <Paper className={classes.paper}>
+              {directionsChanged && (
+                <Grid container justifyContent="space-between">
+                  <Grid item>
+                    <Typography variant="h5" component="h5" color="error">
+                      * Instructions have changed
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Button variant="outlined" color="primary" onClick={handleUpdateInstructions}>
+                      Stage Changes
+                    </Button>
+                    {commitDirections && (
+                      <Button variant="outlined" color="primary" onClick={handleCommitInstructions}>
+                        Commit Changes
+                      </Button>
+                    )}
+                  </Grid>
+                </Grid>
+              )}
+
               <Typography className={classes.title} variant="h4" component="h4" color="secondary">
                 Instructions
               </Typography>
               <List className={classes.list}>
-                <InstructionsList recipe={recipe} />
+                {recipe.directions.map((direction, index) => (
+                  <InstructionsList
+                    key={index}
+                    setChanged={setDirectionsChanged}
+                    idx={index}
+                    recipe={recipe}
+                    direction={direction}
+                    setRecipeState={setRecipeState}
+                    parentEdit={parentDirectionEdit}
+                    setParentEdit={setParentDirectionEdit}
+                    setCommit={setCommitDirections}
+                  />
+                ))}
               </List>
             </Paper>
           </Grid>
@@ -153,6 +210,7 @@ const Recipe = ({ recipe, api }) => {
       <Modal open={open} onClose={handleModalClose} aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description">
         {modalBody}
       </Modal>
+      {apiHasChanged && <Snackbar {...snackbarSettings} />}
     </Grid>
   );
 };

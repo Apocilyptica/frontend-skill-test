@@ -105,15 +105,15 @@ const CellPhoneDrawer = () => {
 
   return (
     <>
-      {["top"].map((anchor) => (
-        <>
+      {["top"].map((anchor, index) => (
+        <div key={index}>
           <IconButton className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer(anchor, true)}>
             <MenuIcon fontSize="large" />
           </IconButton>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>
-        </>
+        </div>
       ))}
     </>
   );

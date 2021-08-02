@@ -19,7 +19,7 @@ export const rootReducer = combineReducers({
 const configStorage = {
   key: "root",
   storage,
-  whitelist: ["user", "recipes", "style", "currentPage"],
+  whitelist: ["user", "recipes"],
 };
 
 export default persistReducer(configStorage, rootReducer);

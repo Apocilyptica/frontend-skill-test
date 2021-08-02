@@ -48,7 +48,9 @@ For this javascript project we've provided a recipe API with two endpoints. With
 - _Bonus:_ Create a view to add and update recipes or specials. Image upload not required. Both endpoints support GET, POST and PATCH.
   | Status | Item | Goal | Notes | Date Complete? |
   | ------------- |:-------------:| --------- | --------- | ---------: |
-  | development | 1 | CRUD in both firebase and local API | lots of work here(use the HOC's created) | N/A |
+  | development | 1 | CRUD in both firebase and local API | started with the local API | N/A |
+  | done | 2 | Update ingredients of recipes, must be logged on as and auth user | took a little reading but got it done pretty nicely | 08/01/2021 |
+  | development | 3 | Update directions of recipes, must be logged on as and auth user | still working on it | N/A |
 
 This project includes a API server (json-server) for you to use. To install and run, use the commands below:
 

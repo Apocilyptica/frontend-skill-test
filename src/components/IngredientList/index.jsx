@@ -58,21 +58,10 @@ const mapState = ({ recipes, style, user, currentPage }) => ({
   specials: recipes.specials,
   darkMode: style.darkMode,
   currentUser: user.currentUser,
-  currentRecipe: currentPage.otherProps,
+  currentRecipe: currentPage.recipe,
 });
 
-const IngredientList = ({
-  idx,
-  recipe,
-  ingredient,
-  setOpen,
-  setModalBody,
-  setIngredientsChanged,
-  setRecipeState,
-  parentEdit,
-  setParentEdit,
-  setCommit,
-}) => {
+const IngredientList = ({ idx, recipe, ingredient, setOpen, setModalBody, setChanged, setRecipeState, parentEdit, setParentEdit, setCommit }) => {
   const classes = useStyles();
   const { specials, darkMode, currentUser, currentRecipe } = useSelector(mapState);
   const adminAuth = checkUserIsAdmin(currentUser);
@@ -94,7 +83,7 @@ const IngredientList = ({
 
   useEffect(() => {
     if (originalValues.amount !== values.amount || originalValues.measurement !== values.measurement || originalValues.name !== values.name)
-      setIngredientsChanged(true);
+      setChanged(true);
   }, [values]);
 
   useEffect(() => {
@@ -135,7 +124,7 @@ const IngredientList = ({
   };
 
   return (
-    <ListItem key={ingredient.uuid}>
+    <ListItem key={idx}>
       <ListItemAvatar>
         <Avatar>
           <ListAltIcon />

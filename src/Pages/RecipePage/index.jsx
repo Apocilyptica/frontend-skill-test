@@ -1,24 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setCurrentRecipe, setPageDetails } from "../../redux/PageDetails/pageDetails.actions";
 
 // Components
 import Recipe from "../../components/Recipe";
 
-// Hooks
-import useSetPageDetials from "../../Hooks/useSetPageDetails";
-
-const mapState = ({ recipes }) => ({
+const mapState = ({ recipes, currentPage }) => ({
   recipes: recipes.recipes,
+  recipeSet: currentPage.recipeSet,
 });
 
-const RecipePage = React.memo((props) => {
-  const { recipes } = useSelector(mapState);
+const RecipePage = (props) => {
+  const dispatch = useDispatch();
+  const { recipes, recipeSet } = useSelector(mapState);
   const recipe = recipes.find((obj) => obj.uuid === props.match.params.uuid);
-  useSetPageDetials(recipe);
 
-  return <Recipe {...props} recipe={recipe} />;
-});
+  useEffect(() => {
+    dispatch(setPageDetails({ title: recipe.title, description: recipe.description }));
+    dispatch(setCurrentRecipe(recipe));
+  }, [recipe]);
+
+  return recipeSet && <Recipe {...props} recipe={recipe} />;
+};
 
 export default RecipePage;
