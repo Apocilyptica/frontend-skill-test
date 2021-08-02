@@ -29,8 +29,8 @@ For this javascript project we've provided a recipe API with two endpoints. With
   | ------------- |:-------------:| --------- | --------- | ---------: |
   | development | 1 | create a home page with 5 of the most recent updates of recipes and include basic data of that recipe as a card | just need to show 5 recent updated recipes | N/A |
   | done | 2 | create a clickable link that dynamically goes to each recipe individually | completely dynamic | 07/25/2021 |
-  | development | 3 | make a recipe page with all the recipes with pagination | havnt started | N/A |
-  | development | 4 | make a search function that uses a trie | havnt started | N/A |
+  | done | 3 | make a recipe page with all the recipes with pagination | didnt get to pagination | 07/29/2021 |
+  | development | 4 | make a search function | havnt started | N/A |
 
 - Create a recipe detail view to display each recipe
   | Status | Item | Goal | Notes | Date Complete? |
@@ -50,7 +50,17 @@ For this javascript project we've provided a recipe API with two endpoints. With
   | ------------- |:-------------:| --------- | --------- | ---------: |
   | development | 1 | CRUD in both firebase and local API | started with the local API | N/A |
   | done | 2 | Update ingredients of recipes, must be logged on as and auth user | took a little reading but got it done pretty nicely | 08/01/2021 |
-  | development | 3 | Update directions of recipes, must be logged on as and auth user | still working on it | N/A |
+  | done | 3 | Update directions of recipes, must be logged on as and auth user | still working on it | 08/02/2021 |
+
+#### Goals for the day 08/02/2021 for me to be comfortable in turning this project in by the end of the day
+
+- The Ideas wont stop flowing I need to find a spot where I can show just enough complexity to show my talents yet be able to turn in this project without taking months :)
+  | Item | Goal | Notes | Complete? |
+  | ------------- |:-------------:| --------- | --------- | ---------: |
+  | Navbar | Make the navigation link for recipes | just need to add the link | NO |
+  | Social Link | Have all the social links go to my profiles | add a github link to this project as well | NO |
+  | Clean Up | Clean Up all unused variables | In the console log get rid of all the unused variable warnings | NO |
+  | Admin User | Create a basic admin user for Crescendo Collective to be able to log in as admin and edit recipes | username: test@test.me password: password | NO |
 
 This project includes a API server (json-server) for you to use. To install and run, use the commands below:
 
