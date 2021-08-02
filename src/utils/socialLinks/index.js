@@ -34,10 +34,10 @@ export const socialLinksData = [
     iconFa: <FontAwesomeIcon icon={faGithub} id="instagram" />,
     URL: "https://github.com/Apocilyptica/frontend-skill-test",
     color: {
-      color: "#fff",
+      color: "#000",
     },
     backgroundColor: {
-      backgroundColor: "#fff",
+      backgroundColor: "#000",
     },
   },
   {

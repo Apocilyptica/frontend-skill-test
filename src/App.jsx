@@ -11,8 +11,9 @@ import ScrollTop from "./components/ScrollTop";
 import Snackbar from "./components/Snackbar";
 
 //  hoc
-import WithAuth from "./hoc/withAuth";
-import WithAdminAuth from "./hoc/withAdminAuth";
+// Going to be used for users and admins to have an account page and profile page were they can edit thier own recipes and manage all thier account and profile data
+// import WithAuth from "./hoc/withAuth";
+// import WithAdminAuth from "./hoc/withAdminAuth";
 
 // Layouts
 import MainLayout from "./Layouts/MainLayout";
@@ -28,7 +29,6 @@ import NoMatchPage from "./Pages/NoMatchPage";
 
 // Material-ui
 import Paper from "@material-ui/core/Paper";
-import ToolBar from "@material-ui/core/ToolBar";
 
 // Styles
 import "./default.scss";

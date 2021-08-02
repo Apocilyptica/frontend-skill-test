@@ -20,6 +20,7 @@ const RecipePage = (props) => {
   useEffect(() => {
     dispatch(setPageDetails({ title: recipe.title, description: recipe.description }));
     dispatch(setCurrentRecipe(recipe));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recipe]);
 
   return recipeSet && <Recipe {...props} recipe={recipe} />;

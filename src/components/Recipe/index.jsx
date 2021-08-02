@@ -71,6 +71,7 @@ const Recipe = ({ recipe, api }) => {
 
   useEffect(() => {
     dispatch(updateCurrentRecipe(recipeState));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleModalClose = () => {

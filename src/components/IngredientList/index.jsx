@@ -84,6 +84,7 @@ const IngredientList = ({ idx, recipe, ingredient, setOpen, setModalBody, setCha
   useEffect(() => {
     if (originalValues.amount !== values.amount || originalValues.measurement !== values.measurement || originalValues.name !== values.name)
       setChanged(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values]);
 
   useEffect(() => {
@@ -96,6 +97,7 @@ const IngredientList = ({ idx, recipe, ingredient, setOpen, setModalBody, setCha
         };
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [edit]);
 
   const handleModalOpen = (special) => {

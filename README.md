@@ -58,10 +58,11 @@ For this javascript project we've provided a recipe API with two endpoints. With
   | Item | Goal | Notes | Complete? |
   | ------------- |:-------------:| --------- | --------- |
   | Navbar | Make the navigation link for recipes | just need to add the link | YES |
-  | Social Link | Have all the social links go to my profiles | add a github link to this project as well | NO |
-  | Clean Up | Clean Up all unused variables | In the console log get rid of all the unused variable warnings | NO |
-  | Admin User | Create a basic admin user for Crescendo Collective to be able to log in as admin and edit recipes | username: test@test.me password: password | NO |
+  | Social Link | Have all the social links go to my profiles | add a github link to this project as well | YES |
+  | Clean Up | Clean Up all unused variables | In the console log get rid of all the unused variable warnings | YES |
+  | Admin User | Create a basic admin user for Crescendo Collective to be able to log in as admin and edit recipes | username: test@test.me password: password | YES |
   | NoMatch Page | Create a NoMatch 404 Page | component | YES |
+  | Firebase Deploy | deploy webapp on firebase and make work with localhost:3001 JSON-API | firebase | YES |
 
 This project includes a API server (json-server) for you to use. To install and run, use the commands below:
 

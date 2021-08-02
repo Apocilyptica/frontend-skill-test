@@ -16,4 +16,9 @@ sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
 
-export default { store, persistor };
+const defaultStores = {
+  store,
+  persistor,
+};
+
+export default defaultStores;

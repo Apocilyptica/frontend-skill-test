@@ -1,9 +1,3 @@
-import React, { useEffect, useState, useMemo, useRef } from "react";
-
-// Redux
-import { useSelector, useDispatch } from "react-redux";
-import { setPathArray } from "../redux/PageDetails/pageDetails.actions";
-
 // utils
 import { handlePathNames } from "../utils/pathNames";
 

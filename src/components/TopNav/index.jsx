@@ -20,9 +20,6 @@ import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import Switch from "@material-ui/core/Switch";
 
-// Material-ui Icons
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-
 // Material-ui Styles
 import { makeStyles } from "@material-ui/core/styles";
 

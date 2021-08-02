@@ -76,6 +76,7 @@ const InstructionsList = ({ idx, recipe, direction, setChanged, setRecipeState, 
 
   useEffect(() => {
     if (originalValues.instructions !== values.instructions || originalValues.optional !== values.optional) setChanged(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values]);
 
   useEffect(() => {
@@ -88,6 +89,7 @@ const InstructionsList = ({ idx, recipe, direction, setChanged, setRecipeState, 
         };
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [edit]);
 
   const handleEdit = () => {

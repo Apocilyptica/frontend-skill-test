@@ -57,10 +57,12 @@ const Map = ({ geoLocation, title }) => {
     const lng = parseFloat(geo[1]);
     dispatch(setLocationLatLng({ lat: lat, lng: lng }));
     setGeoURL(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (geoURL) dispatch(setLocationAddressStart(geoURL));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [geoURL]);
 
   const handleSelected = (cords) => {
